@@ -1,5 +1,9 @@
 FROM ubuntu
 
+MAINTAINER dergeberl
+
+LABEL org.opencontainers.image.source https://github.com/dergeberl/kubeteach-webterminal
+
 RUN apt update && apt install -y curl vim wget && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg --output /etc/apt/trusted.gpg.d/k8s-apt-key.gpg && \
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list && \
@@ -12,11 +16,13 @@ RUN wget https://github.com/sorenisanerd/gotty/releases/download/v1.3.0/gotty_v1
     rm gotty_v1.3.0_linux_amd64.tar.gz
 
 
-RUN useradd -m kubeteach
+RUN useradd -u 65531 -m kubeteach
 
-RUN echo "alias k=kubectl" >> /home/kubeteach/.bash_aliases
+RUN echo "alias k=kubectl" >> /home/kubeteach/.bash_aliases && \
+    echo 'source <(kubectl completion bash)' >>~/.bashrc
 
-USER kubeteach
+
+USER 65531
 WORKDIR /home/kubeteach
 
 ENTRYPOINT ["/gotty", "-w", "/bin/bash"]
