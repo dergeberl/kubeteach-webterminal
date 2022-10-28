@@ -3,7 +3,9 @@ name: new-version
 on:
   schedule:
   - cron:  '0 8 1 * *'
-  - cron:  '*/5 * * * *'
+  push:
+    branches:
+      - main
 
 
 jobs:
