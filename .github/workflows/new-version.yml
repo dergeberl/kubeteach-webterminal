@@ -39,7 +39,7 @@ jobs:
       with:
         github-token: ${{ secrets.REGISTRY }}
         script: |
-          github.git.createRef({
+          github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
             ref: "refs/tags/v${{ steps.semvers.outputs.patch }}",
