@@ -26,7 +26,7 @@ jobs:
         ref: ${{ steps.previoustag.outputs.tag }}
     - name: get sha from commit
       id: tagcommitsha
-      run: echo "::set-output name=sha::$(git rev-parse HEAD)"
+      run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
     - name: 'Get next patch version'
       id: semvers
       uses: "WyriHaximus/github-action-next-semvers@v1"
