@@ -11,7 +11,7 @@ RUN apt update && apt install -y curl vim wget && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
-RUN wget https://github.com/sorenisanerd/gotty/releases/download/v1.3.0/gotty_v1.3.0_linux_amd64.tar.gz && \
+RUN wget https://github.com/sorenisanerd/gotty/releases/download/v1.5.0/gotty_v1.5.0_linux_amd64.tar.gz && \
     tar xfz gotty_v1.3.0_linux_amd64.tar.gz && \
     rm gotty_v1.3.0_linux_amd64.tar.gz
 
